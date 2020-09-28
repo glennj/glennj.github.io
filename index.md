@@ -5,9 +5,9 @@ markdown can be used for web page authoring.
 
 ## Mentoring notes for [exercism.io](https://exercism.io) tracks
 
-* [bash](exercism/bash.md)
-* [pharo smalltalk](exercism/pharo.md)
-* [tcl](exercism/tcl.md)
+* [bash](https://github.com/glennj/exercism.io/blob/master/_mentor_notes/bash.md)
+* [pharo smalltalk](https://github.com/glennj/exercism.io/blob/master/_mentor_notes/pharo.md)
+* [tcl](https://github.com/glennj/exercism.io/blob/master/_mentor_notes/tcl.md)
 
 ---
 
