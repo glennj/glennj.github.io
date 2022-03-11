@@ -15,6 +15,7 @@ markdown can be used for web page authoring.
 Notes about tools for 
 * [working with CSV](./csvtools.md)
 * [working with JSON](./jsontools.md)
+* [useful CLI tools](./clitools.md)
 
 ---
 
