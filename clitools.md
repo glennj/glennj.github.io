@@ -51,14 +51,15 @@ end
 [exa]: https://the.exa.website
 
 [^1]: my bash aliases for these commands
-```bash
-$ type ls ll la lh
-ls is aliased to `ls -F'
-ll is aliased to `ls -l'
-la is aliased to `ll -a'
-lh is a function
-lh ()
-{
-    ls -F -l -t ${1+"$@"} | cat - | head -n 20
-}
-```
+
+    ```bash
+    $ type ls ll la lh
+    ls is aliased to `ls -F'
+    ll is aliased to `ls -l'
+    la is aliased to `ll -a'
+    lh is a function
+    lh ()
+    {
+        ls -F -l -t ${1+"$@"} | cat - | head -n 20
+    }
+    ```
