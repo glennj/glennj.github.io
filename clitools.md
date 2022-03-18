@@ -12,7 +12,7 @@ A side-by-side `diff`.
 
 A "modern replacement for `ls`".
 
-These are my fish functions for the `ls` aliases I grew up with[^1]:
+These are my fish functions for the `ls` aliases I grew up with[^bash-aliases]:
 ```sh
 $ type ls ll la lh
 ls is a function with definition
@@ -50,7 +50,7 @@ end
 [delta]: https://dandavison.github.io/delta/
 [exa]: https://the.exa.website
 
-[^1]: my bash aliases for these commands
+[^bash-aliases]: my bash aliases for these commands
 
     ```bash
     $ type ls ll la lh
