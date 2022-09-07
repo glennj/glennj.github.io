@@ -12,6 +12,17 @@ generate JSON:
 * The --arg and --argjson options to pass in individual values
 * the --args and --jsonargs options, and the $ARGS.positional variable, to pass in lists of values
 
+Example:
+```sh
+$ jq -c -n \
+     --arg foo bar \
+     --argjson qux null \
+     --jsonargs \
+     '{$foo, baz: $ARGS.positional, $qux}' \
+     1 2 3
+{"foo":"bar","baz":[1,2,3],"qux":null}
+```
+
 I've been building an exercism [jq track], so I've been learning it pretty intensely.
 I've written [some notes](jq/notes) about studying the manual.
 
@@ -19,7 +30,7 @@ I've written [some notes](jq/notes) about studying the manual.
 
 A small utility to create JSON objects from shell variables.
 
-Example (take care with shell filename expansion
+Example (take care with shell filename expansion)
 ```sh
 $ jo foo=bar baz[]=1 baz[]=2 baz[]=3 qux=
 {"foo":"bar","baz":[1,2,3],"qux":null}
