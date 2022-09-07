@@ -4,7 +4,7 @@
 
 _The_ JSON processing tool. The syntax is akin to a functional language, so it takes some getting used to.
 
-The [exercism] [bash test runner] uses `jq` to
+The [exercism] [bash-test-runner] uses `jq` to
 generate JSON: 
 * The --arg and --argjson options to pass in individual values
 * the --args and --jsonargs options, and the $ARGS.positional variable, to pass in lists of values
@@ -12,7 +12,7 @@ generate JSON:
 I've been building an exercism [jq track], so I've been learning it pretty intensely.
 I've written [some notes](jq/notes) about studying the manual.
 
-## [jo]
+## [jo][]
 
 A small utility to create JSON objects from shell variables.
 
@@ -34,7 +34,7 @@ $ jo foo=bar items="$(jo "${@/#/baz[]=}")" qux=
 {"foo":"bar","items":{"baz":["alpha","beta","gamma"]},"qux":null}
 ```
 
-## [gron]
+## [gron][gron]
 
 "Flattens" JSON into a sequence of individual assignments, which makes it possible to use line-oriented tools (grep, etc) to process it.
 
@@ -71,7 +71,7 @@ $ echo '{"foo":"bar", "baz": [1, 2, 3], "qux": null}' \
 
 [jq]: https://stedolan.github.io/jq/
 [exercism]: https://exercism.org
-[bash test runner]: https://github.com/exercism/bash-test-runner/blob/main/bin/run.sh#L197
+[bash-test-runner]: https://github.com/exercism/bash-test-runner/blob/main/bin/run.sh#L197
 [jq track]: https://github.com/exercism/jq/
 [gron]: https://github.com/tomnomnom/gron
 [jo]: https://github.com/jpmens/jo
