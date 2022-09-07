@@ -1,6 +1,6 @@
 # Tools for processing JSON
 
-## [jq][jq]
+## [jq]
 
 _The_ JSON processing tool. The syntax is akin to a functional language, so it takes some getting used to.
 
@@ -8,6 +8,9 @@ The [exercism][exercism] [bash test runner][bash-test-runner] uses `jq` to
 generate JSON: 
 * The --arg and --argjson options to pass in individual values
 * the --args and --jsonargs options, and the $ARGS.positional variable, to pass in lists of values
+
+I've been building an exercism [jq track][ex-jq], so I've been learning it pretty intensely.
+I've written [some notes](jq/notes) about studying the manual.
 
 ## [jo][jo]
 
@@ -69,6 +72,7 @@ $ echo '{"foo":"bar", "baz": [1, 2, 3], "qux": null}' \
 [jq]: https://stedolan.github.io/jq/
 [exercism]: https://exercism.org
 [bash-test-runner]: https://github.com/exercism/bash-test-runner/blob/main/bin/run.sh#L197
+[ex-jq]: https://github.com/exercism/jq/
 [gron]: https://github.com/tomnomnom/gron
 [jo]: https://github.com/jpmens/jo
 
