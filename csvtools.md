@@ -8,6 +8,10 @@ A suite of tools, implemented in Python. [Install with `pip`][csvkit-install].
 
 General purpose blender of data.
 
+## [datamash][datamash]
+
+"GNU datamash is a command-line program which performs basic numeric, textual and statistical operations on input textual data files."
+
 ## [OCaml CSV][ocaml-csv]
 
 * this one can transpose
@@ -236,3 +240,4 @@ General purpose blender of data.
 [mlr]: https://miller.readthedocs.io/en/latest/
 [ocaml-csv]: https://github.com/Chris00/ocaml-csv
 [opam]: https://opam.ocaml.org/doc/Install.html
+[datamash]: https://www.gnu.org/software/datamash/
