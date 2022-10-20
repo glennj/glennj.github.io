@@ -12,6 +12,8 @@ General purpose blender of data.
 
 "GNU datamash is a command-line program which performs basic numeric, textual and statistical operations on input textual data files."
 
+<!-- 
+
 ## [OCaml CSV][ocaml-csv]
 
 * this one can transpose
@@ -234,6 +236,7 @@ General purpose blender of data.
     ```
 
     ---
+-->
 
 [csvkit]: https://csvkit.readthedocs.io/en/latest/
 [csvkit-install]: https://csvkit.readthedocs.io/en/latest/tutorial/1_getting_started.html#installing-csvkit
