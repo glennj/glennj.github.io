@@ -1,8 +1,8 @@
 # `jq`
 
 Of course, [the `jq` manual][manual] is the source.
-[manual]: https://stedolan.github.io/jq/manual/v1.6/#Breakingoutofcontrolstructures
 
+[manual]: https://stedolan.github.io/jq/manual/v1.6/#Breakingoutofcontrolstructures
 
 ## Filters/Functions/Operators Categorized
 
@@ -204,14 +204,23 @@ Of course, [the `jq` manual][manual] is the source.
         ```
 
 * `to_entries`
-    - convert a object to an array
+    - convert a object to an array of `{key, value}` objects
 
         ```jq
         {a:1, b:2} | to_entries
         # => [{ key: "a", value: 1}, {key: "b", value: 2}]
         ```
 
+        Works with arrays too: the keys are the numeric indexes
+
+        ```jq
+        ["foo", "bar", "baz"] | to_entries
+        # => [{"key":0,"value":"foo"},{"key":1,"value":"bar"},{"key":2,"value":"baz"}]
+        ```
+
     - `from_entries` is the inverse
+        - can't do `from_entries` on `array|to_entries` -- keys aren't strings.
+
     - `with_entries(foo)` is a shorthand for
 
         ```jq
@@ -422,3 +431,15 @@ See [Dates]
     ([1,2,3] | inside([3,2,1])) and ([1,2,3] | contains([3,2,1]))
     # => true
     ```
+    
+    Better expressed using [`IN`][man-in] and [`all`][man-all]
+
+    ```jq
+    [1, 2, 3] | all(IN([3, 2, 1] | .[]))
+    # => true
+    ```
+    The `IN` argument is a _stream_
+
+
+[man-all]: https://stedolan.github.io/jq/manual/#all,all(condition),all(generator;condition)
+[man-in]: https://stedolan.github.io/jq/manual/#SQL-StyleOperators
