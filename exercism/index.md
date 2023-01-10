@@ -20,7 +20,7 @@ Some thoughts about my exercism journey ...
 The [#12in23] challenge: get started with 12 new languages in 2023. What shall I do?
 
 * Python: I've mostly finished this track, but pick up some of the un-addressed ones.
-* Powershell: can't know too many shells ;)
+* [Powershell](./powershell.md): can't know too many shells ;)
     * kind of cheating that it's not active and only maintainers can see it.
 * Haskell: now that I have elixir and common-lisp under my belt, look at this "pure" functional language.
 
