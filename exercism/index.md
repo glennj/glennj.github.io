@@ -1,6 +1,6 @@
 # Exercism
 
-Exercism is [exercism.org][exercism], a place to learn new programming languages through TDD practice exercises.
+Exercism is [**exercism.org**][exercism], a place to learn new programming languages through TDD practice exercises.
 
 ## Journey
 
@@ -8,7 +8,12 @@ Some thoughts about my exercism journey ...
 
 * I can pinpoint the first time I ever heard about exercism: [this Stackoverflow bash question][so-bash-bats].
 * My first exercise submission was about 3 hours afterward: [Hello World on the bash track][ex-bash-hw].
-* My first PR was about 7 months later: [porting the `all-your-base` exercise for bash][gh-ex-pr1].
+* My first PR was about 7 months later: [porting the all-your-base exercise for bash][gh-ex-pr1].
+* I ended up contributing 60 bash exercises:
+  ```sh
+  $ jq '.authors as $a | if ("glennj" | IN($a[])) then input_filename else empty end' exercises/practice/*/.meta/config.json | wc -l
+  ```
+* and then I jumped onto the [tcl track][gh-ex-tcl], and then [awk][gh-ex-awk] and [jq][gh-ex-jq].
 
 ## #12in23
 
@@ -37,5 +42,7 @@ I have to link to my [fish wrapper around `exercism` CLI][fish-wrapper].
 [gh-ex-pr1]: https://github.com/exercism/bash/pull/278
 [#12in23]: https://exercism.org/challenges/12in23
 [gh-ex-jq]: https://github.com/exercism/jq
+[gh-ex-tcl]: https://github.com/exercism/tcl
+[gh-ex-awk]: https://github.com/exercism/awk
 [gh-glennj-ex]: https://github.com/glennj/exercism.io
 [fish-wrapper]:  https://github.com/glennj/exercism-cli-fish-wrapper

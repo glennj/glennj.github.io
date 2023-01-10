@@ -3,7 +3,7 @@
 So, I don't really know what's going to go in here. It's nice that 
 markdown can be used for web page authoring.
 
-## Mentoring notes for [exercism.org](https://exercism.org) tracks
+## Mentoring notes for [exercism.org](./exercism/) tracks
 
 * [bash](https://github.com/glennj/exercism.io/blob/master/_mentor_notes/bash.md)
 * [pharo smalltalk](https://github.com/glennj/exercism.io/blob/master/_mentor_notes/pharo.md)
