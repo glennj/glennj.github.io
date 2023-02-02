@@ -20,9 +20,10 @@ Some thoughts about my exercism journey ...
 The [#12in23] challenge: get started with 12 new languages in 2023. What shall I do?
 
 * Python: I've mostly finished this track, but pick up some of the un-addressed ones.
-* [Powershell](./powershell.md): can't know too many shells ;)
+* [Powershell][powershell]: can't know too many shells ;)
     * kind of cheating that it's not active and only maintainers can see it.
 * Haskell: now that I have elixir and common-lisp under my belt, look at this "pure" functional language.
+    * hmm, maybe [F#][fsharp] instead...
 
 This challenge is extra motivation to get [the `jq` track][gh-ex-jq] shipped!
 
@@ -37,6 +38,8 @@ I have to link to my [fish wrapper around `exercism` CLI][fish-wrapper].
 
 
 [exercism]: https://exercism.org
+[powershell]: https://github.com/glennj/exercism.io/blob/main/powershell/journey.md
+[fsharp]: https://github.com/glennj/exercism.io/tree/main/fsharp
 [so-bash-bats]: https://stackoverflow.com/questions/52970751/exercism-bash-track
 [ex-bash-hw]: https://exercism.org/tracks/bash/exercises/hello-world/solutions/glennj
 [gh-ex-pr1]: https://github.com/exercism/bash/pull/278
