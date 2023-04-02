@@ -26,6 +26,11 @@ $ jq -c -n \
 I've been building an exercism [jq track], so I've been learning it pretty intensely.
 I've written [some notes](jq/notes) about studying the manual.
 
+## [ijq]
+
+An interactive terminal-based tool that displays then input on one side and the output on the other, filtered in real-time as you enter a jq expression.
+Uses `jq`.
+
 ## [jo]
 
 A small utility to create JSON objects from shell variables.
@@ -89,4 +94,4 @@ $ echo '{"foo":"bar", "baz": [1, 2, 3], "qux": null}' \
 [jq track]: https://github.com/exercism/jq/
 [gron]: https://github.com/tomnomnom/gron
 [jo]: https://github.com/jpmens/jo
-
+[ijq]: https://github.com/gpanders/ijq
