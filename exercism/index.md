@@ -27,6 +27,8 @@ Some thoughts about my Exercism journey ...
     * [jq][gh-ex-jq]
         * 35 practice exercises, 12 concepts, 11 concept exercises
         * go live [Jan 18, 2023](https://twitter.com/exercism_io/status/1615684303765078016)
+    * [ballerina][gh-ex-bal]
+        * to get them over the hump for [#12in23], I added 16 exercises.
 
 ## My exercises
 
@@ -45,6 +47,7 @@ I have to link to my [fish wrapper around `exercism` CLI][fish-wrapper].
 [ex-bash-hw]: https://exercism.org/tracks/bash/exercises/hello-world/solutions/glennj
 [gh-ex-pr1]: https://github.com/exercism/bash/pull/278
 [#12in23]: https://exercism.org/challenges/12in23
+[gh-ex-bal]: https://github.com/exercism/ballerina
 [gh-ex-jq]: https://github.com/exercism/jq
 [gh-ex-tcl]: https://github.com/exercism/tcl
 [gh-ex-awk]: https://github.com/exercism/awk
