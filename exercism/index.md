@@ -27,8 +27,12 @@ Some thoughts about my Exercism journey ...
     * [jq][gh-ex-jq]
         * 35 practice exercises, 12 concepts, 11 concept exercises
         * go live [Jan 18, 2023](https://twitter.com/exercism_io/status/1615684303765078016)
-    * [ballerina][gh-ex-bal]
-        * to get them over the hump for [#12in23], I added 16 exercises.
+    * [#12in23]
+        * I've been helping tracks get enough exercises for the monthly badges:
+            * [ballerina][gh-ex-bal], [cobol][gh-ex-cobol], [fortran][gh-ex-fort], [8th][gh-ex-8th]
+            * I really got into 8th, it's a fun little language. 
+              We worked together to get the testing framework in a bit nicer shape.
+            * Did not enjoy cobol. It is not a fun language to work in.
 
 ## My exercises
 
@@ -37,7 +41,9 @@ This repo includes my mentor notes.
 
 ## Exercism CLI tool
 
-I have to link to my [fish wrapper around `exercism` CLI][fish-wrapper].
+I prefer working at a command line.
+The [Exercism CLI](./exercism/cli) suits me very well.
+
 
 
 [exercism]: https://exercism.org
@@ -48,12 +54,14 @@ I have to link to my [fish wrapper around `exercism` CLI][fish-wrapper].
 [gh-ex-pr1]: https://github.com/exercism/bash/pull/278
 [#12in23]: https://exercism.org/challenges/12in23
 [gh-ex-bal]: https://github.com/exercism/ballerina
+[gh-ex-8th]: https://github.com/exercism/8th
 [gh-ex-jq]: https://github.com/exercism/jq
+[gh-ex-fort]: https://github.com/exercism/fortran
+[gh-ex-cobol]: https://github.com/exercism/cobol
 [gh-ex-tcl]: https://github.com/exercism/tcl
 [gh-ex-awk]: https://github.com/exercism/awk
 [gh-ex-wren]: https://github.com/exercism/wren
 [gh-glennj-ex]: https://github.com/glennj/exercism.io
-[fish-wrapper]:  https://github.com/glennj/exercism-cli-fish-wrapper
 [wren-console-commits]: https://github.com/joshgoebel/wren-console/commits?author=glennj
 [wren-testie-commits]: https://github.com/joshgoebel/wren-testie/commits?author=glennj
 [wren-essentials-commits]: https://github.com/joshgoebel/wren-essentials/commits?author=glennj
