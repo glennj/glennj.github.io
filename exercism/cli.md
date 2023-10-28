@@ -1,8 +1,8 @@
-# Exercism Common LispI
+# Exercism CLI
 
 I like to work at the command line.
 I like tools (like git for example) that are `command subcommand args ...`
-The [Exercism Common LispI][cli] works like this.
+The [Exercism CLI][cli] works like this.
 
 It is used mainly to download an exercise, and to submit your solution.
 
@@ -51,13 +51,12 @@ This will run the unit tests for the exercise you're currently working on.
 
 It's a fantastic addition that does "The Right Thing"™ to invoke the test suite for [_most tracks_][cli-test-tracks].
 
-Common Lisp is one such track.
+Common Lisp is one such excluded track.
 Unfortunately Common Lisp does not benefit because there is no single prescribed way to run the tests.
 
 I chose SBCL as my Common Lisp interpreter.
 Here's an extension of the `exercism` bash wrapper that adds functionality to the `test` subcommand.
 
-```bash
 ```bash
 exercism () {
     case "$1" in
