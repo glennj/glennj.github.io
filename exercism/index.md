@@ -42,7 +42,7 @@ This repo includes my mentor notes.
 ## Exercism CLI tool
 
 I prefer working at a command line.
-The [Exercism CLI](./exercism/cli) suits me very well.
+The [Exercism CLI](./cli) suits me very well.
 
 
 
