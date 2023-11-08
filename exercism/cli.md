@@ -54,7 +54,7 @@ It's a fantastic addition that does "The Right Thing"™ to invoke the test suit
 Common Lisp is one such excluded track.
 Unfortunately Common Lisp does not benefit because there is no single prescribed way to run the tests.
 
-I chose SBCL as my Common Lisp interpreter.
+I chose Roswell as my Common Lisp interpreter manager.
 Here's an extension of the `exercism` bash wrapper that adds functionality to the `test` subcommand.
 
 ```bash
@@ -72,9 +72,8 @@ exercism () {
             if [[ $PWD =~ "$(command exercism workspace)/common-lisp/"([^/]+) ]]
             then
                 local exercise=${BASH_REMATCH[1]}
-                sbcl --noinform \
-                     --load "${exercise}-test" \
-                     --eval "(exit :code (if (${exercise}-test:run-tests) 0 1))"
+                ros run --load "${exercise}-test" \
+                        --eval "(exit :code (if (${exercise}-test:run-tests) 0 1))"
             else
                 command exercism "$@"
             fi
@@ -85,7 +84,7 @@ exercism () {
 ```
 
 That uses a shell regular expression to see if you're current directory is a Common Lisp exercise.
-If so, it will say the `sbcl` incantation to run the tests.
+If so, it will say the `ros` incantation to run the tests.
 If not, it will run the default `exercism test` for wherever you are.
 
 

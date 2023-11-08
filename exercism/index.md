@@ -53,11 +53,11 @@ The [Exercism CLI](./cli) suits me very well.
 [ex-bash-hw]: https://exercism.org/tracks/bash/exercises/hello-world/solutions/glennj
 [gh-ex-pr1]: https://github.com/exercism/bash/pull/278
 [#12in23]: https://exercism.org/challenges/12in23
-[gh-ex-bal]: https://github.com/exercism/ballerina
-[gh-ex-8th]: https://github.com/exercism/8th
+[gh-ex-bal]: https://github.com/exercism/ballerina/pulls?q=is:pr+author:glennj+%22add+exercise%22+
+[gh-ex-8th]: https://github.com/exercism/8th/pulls?q=is:pr+author:glennj+is:merged+exercise+in:title+
 [gh-ex-jq]: https://github.com/exercism/jq
-[gh-ex-fort]: https://github.com/exercism/fortran
-[gh-ex-cobol]: https://github.com/exercism/cobol
+[gh-ex-fort]: https://github.com/exercism/fortran/pulls?q=is:pr+author:glennj+is:merged+%22add+exercise%22
+[gh-ex-cobol]: https://github.com/exercism/cobol/pulls?q=is:pr+author:glennj+is:merged+%22add+exercise%22
 [gh-ex-tcl]: https://github.com/exercism/tcl
 [gh-ex-awk]: https://github.com/exercism/awk
 [gh-ex-wren]: https://github.com/exercism/wren
