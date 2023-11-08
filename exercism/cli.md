@@ -73,7 +73,7 @@ exercism () {
             then
                 local exercise=${BASH_REMATCH[1]}
                 ros run --load "${exercise}-test" \
-                        --eval "(exit :code (if (${exercise}-test:run-tests) 0 1))"
+                        --eval "(uiop:quit (if (${exercise}-test:run-tests) 0 1))"
             else
                 command exercism "$@"
             fi
