@@ -91,7 +91,7 @@ If not, it will run the default `exercism test` for wherever you are.
 ## The Fish shell
 
 I don't use bash as my interactive shell, I use [fish][fish].
-It has superior completions and history recall.
+It has superior completions and autosuggestions.
 
 I took the above concepts about extending `exercism` and built a whole lot of new functionality in my [fish wrapper around `exercism`][fish-wrapper].
 
