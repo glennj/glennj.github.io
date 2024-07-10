@@ -2,7 +2,7 @@
 
 Of course, [the `jq` manual][manual] is the source.
 
-[manual]: https://stedolan.github.io/jq/manual/v1.6/#Breakingoutofcontrolstructures
+[manual]: https://jqlang.github.io/jq/manual/v1.6
 
 ## Filters/Functions/Operators Categorized
 
@@ -100,7 +100,7 @@ Of course, [the `jq` manual][manual] is the source.
 * `gsub(regex; string)`, `gsub(regex; string; flags)`
 
 [Oniguruma]: https://raw.githubusercontent.com/kkos/oniguruma/master/doc/RE
-[match]: https://stedolan.github.io/jq/manual/v1.6/#match(val),match(regex;flags) 
+[match]: https://jqlang.github.io/jq/manual/v1.6/#match
 
 ### Arrays
 
@@ -281,7 +281,7 @@ Of course, [the `jq` manual][manual] is the source.
 
 See [Dates]
 
-[Dates]: https://stedolan.github.io/jq/manual/v1.6/#Dates
+[Dates]: https://jqlang.github.io/jq/manual/v1.6/#dates
 
 ### Conditionals
 
@@ -406,7 +406,7 @@ See [Dates]
 
 * [Assignment]
 
-[Assignment]: https://stedolan.github.io/jq/manual/v1.6/#Assignment 
+[Assignment]: https://jqlang.github.io/jq/manual/v1.6/#assignment 
 
 ## Snippets
 
@@ -441,5 +441,5 @@ See [Dates]
     The `IN` argument is a _stream_
 
 
-[man-all]: https://stedolan.github.io/jq/manual/#all,all(condition),all(generator;condition)
-[man-in]: https://stedolan.github.io/jq/manual/#SQL-StyleOperators
+[man-all]: https://jqlang.github.io/jq/manual/#all
+[man-in]: https://jqlang.github.io/jq/manual/#sql-style-operators

@@ -32,7 +32,11 @@ Some thoughts about my Exercism journey ...
             * [ballerina][gh-ex-bal], [cobol][gh-ex-cobol], [fortran][gh-ex-fort], [8th][gh-ex-8th]
             * I really got into 8th, it's a fun little language. 
               We worked together to get the testing framework in a bit nicer shape.
-            * Did not enjoy cobol. It is not a fun language to work in.
+            * Did not enjoy cobol, not a fun language.
+    * [#48in24]
+        * [contributing exercise](https://github.com/pulls?page=3&q=is%3Apr+author%3Aglennj+org%3Aexercism+created%3A%3E2024-01-01+is%3Amerged+Add+in%3Atitle)
+          for tracks to fill up [the implementation status chart][48impl],
+          particularly Dart, Wren, awk, jq.
 
 ## My exercises
 
@@ -53,6 +57,8 @@ The [Exercism CLI](./cli) suits me very well.
 [ex-bash-hw]: https://exercism.org/tracks/bash/exercises/hello-world/solutions/glennj
 [gh-ex-pr1]: https://github.com/exercism/bash/pull/278
 [#12in23]: https://exercism.org/challenges/12in23
+[#48in24]: https://exercism.org/challenges/48in24
+[48impl]: https://exercism.org/challenges/48in24/implementation_status
 [gh-ex-bal]: https://github.com/exercism/ballerina/pulls?q=is:pr+author:glennj+%22add+exercise%22+
 [gh-ex-8th]: https://github.com/exercism/8th/pulls?q=is:pr+author:glennj+is:merged+exercise+in:title+
 [gh-ex-jq]: https://github.com/exercism/jq
