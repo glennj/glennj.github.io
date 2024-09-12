@@ -48,6 +48,9 @@ This repo includes my mentor notes.
 I prefer working at a command line.
 The [Exercism CLI](./cli) suits me very well.
 
+## Lua
+
+Some notes about [Lua](./lua/) on Exercism.
 
 
 [exercism]: https://exercism.org
