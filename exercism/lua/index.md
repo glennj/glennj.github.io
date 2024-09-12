@@ -11,5 +11,10 @@ Lua OO is kind of tricky to wrap your head around.
 You're either going to pick a closure-based approach (where the constructor function will return a table containing function elements and access the data from the constructor function's scope), or you're going to pick a metatable-based approach (which more closely resembles "traditional" OO class/instance style).
 
 Since metatables are a new concept to a lot of Lua students, I wrote an article about it.
-Unfortunately, it's kind of hidden on the Exercism website, so I'll reproduce it here:
-[A brief OOP tutorial](./oop).
+Unfortunately, it's kind of [hidden on the Exercism website][article], so I'll reproduce it here.
+
+> **[A brief OOP tutorial][oop]**
+
+
+[article]: https://exercism.org/tracks/lua/exercises/high-scores/articles/oop
+[oop]: ./oop
