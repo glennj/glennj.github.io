@@ -1,5 +1,34 @@
 # Tools for processing CSV files
 
+## [GNU awk][gawk]
+
+Not without significant edge cases, [use the FPAT variable][FPAT] to specify, not the field separator, but the pattern of what a field contains:
+
+```awk
+BEGIN {
+    FPAT = "([^,]+)|(\"[^\"]+\")"
+}
+
+{
+    print "NF = ", NF
+    for (i = 1; i <= NF; i++) {
+        printf("$%d = <%s>\n", i, $i)
+    }
+}
+```
+
+or 
+
+```sh
+awk -v FPAT='([^,]+)|("[^"]+")' '{print $NF}' file.csv
+```
+
+This cannot handle newlines in quoted fields, or doubled double-quotes in quoted fields.
+
+## Perl's [Text::CSV][text-csv]
+
+Somewhat awkward to work with, but handles embedded newlines well.
+
 ## [csvkit][csvkit]
 
 A suite of tools, implemented in Python. [Install with `pip`][csvkit-install].
@@ -244,3 +273,6 @@ General purpose blender of data.
 [ocaml-csv]: https://github.com/Chris00/ocaml-csv
 [opam]: https://opam.ocaml.org/doc/Install.html
 [datamash]: https://www.gnu.org/software/datamash/
+[gawk]: https://www.gnu.org/software/gawk/manual/html_node/index.html
+[FPAT]: https://www.gnu.org/software/gawk/manual/html_node/Splitting-By-Content.html#index-CSV-_0028comma-separated-values_0029-data-parsing-with-FPAT
+[text-csv]: https://metacpan.org/pod/Text::CSV
