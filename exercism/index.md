@@ -34,7 +34,7 @@ Some thoughts about my Exercism journey ...
               We worked together to get the testing framework in a bit nicer shape.
             * Did not enjoy cobol, not a fun language.
     * [#48in24]
-        * [contributing exercise](https://github.com/pulls?page=3&q=is%3Apr+author%3Aglennj+org%3Aexercism+created%3A%3E2024-01-01+is%3Amerged+Add+in%3Atitle)
+        * [contributing exercise][48-prs]
           for tracks to fill up [the implementation status chart][48impl],
           particularly Dart, Wren, awk, jq.
 
@@ -74,3 +74,4 @@ Some notes about [Lua](./lua/) on Exercism.
 [wren-console-commits]: https://github.com/joshgoebel/wren-console/commits?author=glennj
 [wren-testie-commits]: https://github.com/joshgoebel/wren-testie/commits?author=glennj
 [wren-essentials-commits]: https://github.com/joshgoebel/wren-essentials/commits?author=glennj
+[48-prs]: https://github.com/pulls?page=3&q=is%3Apr+author%3Aglennj+org%3Aexercism+created%3A2024-01-01..2025-01-01+is%3Amerged+Add+in%3Atitle
