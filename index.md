@@ -17,6 +17,8 @@ Notes about tools for
 * [working with JSON](./jsontools.md)
 * [useful CLI tools](./clitools.md)
 
+[Other stuff](./stuff.md)
+
 ---
 
 [Github Pages help](https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages)
