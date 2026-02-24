@@ -2,10 +2,13 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+style = {'dark': 'dark_background', 'light': 'seaborn-v0_8-muted'}
+theme = 'light'
+
 # color styles
 #plt.style.use('dark_background')
 #plt.style.use('ggplot') # or 'seaborn-v0_8-muted'
-plt.style.use('seaborn-v0_8-muted')
+plt.style.use(style[theme])
 
 # Set up the figure and axis
 fig, ax = plt.subplots(figsize=(10, 7))
@@ -58,5 +61,6 @@ ax.set_ylabel('Y axis', fontsize=12)
 
 # Show the plot
 plt.tight_layout()
-plt.show()
+#plt.show()
+plt.savefig(f'laser_path-{theme}.svg', transparent=True)
 ```
