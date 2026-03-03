@@ -1,0 +1,60 @@
+{% comment %}
+  Breadcrumbs snippet for Jekyll sites with deep directories.
+  Outputs: Home > Level 1 > Level 2 > ... > Current Page
+  Ref: https://www.w3tutorials.net/blog/what-are-some-good-ways-to-implement-breadcrumbs-on-a-jekyll-site/
+{% endcomment %}
+ 
+{% assign crumbs = "" | split: "" %}  {% comment %}Empty array to store crumbs{% endcomment %}
+{% assign current_url = page.url | remove: "/index.html" | remove: ".html" %}  {% comment%}Clean URL (no .html/index.html){% endcomment %}
+{% assign url_parts = current_url | split: "/" | reject: empty %}  {% comment%}Split URL into segments (e.g., ["guides", "web-dev", "jekyll"])`{% endcomment %}
+
+{% comment %}Add "Home" as the first crumb{% endcomment %}
+{% assign home_crumb = "" | split: "" %}
+{% assign home_crumb = home_crumb | push: "/" %}  {% comment%}URL for Home{% endcomment %}
+{% assign home_crumb = home_crumb | push: "Home" %}  {% comment%}Title for Home{% endcomment %}
+{% assign crumbs = crumbs | push: home_crumb %}
+
+{% comment %}Build crumbs for parent directories{% endcomment %}
+{% assign current_path = "" %}  {% comment%}Tracks cumulative path (e.g., "/guides/", then "/guides/web-dev/"){% endcomment %}
+ 
+{% for part in url_parts %}
+  {% assign current_path = current_path | append: part | append: "/" %}  {% comment%}e.g., "/guides/" → "/guides/web-dev/"{% endcomment %}
+  
+  {% comment%}Find the index page for this directory to get its title{% endcomment %}
+  {% assign dir_page = site.pages | where: "url", current_path | first %}
+  
+  {% comment%}Use the directory page's title if available; otherwise, clean the slug{% endcomment %}
+  {% if dir_page.title %}
+    {% assign crumb_title = dir_page.title %}
+  {% else %}
+    {% assign crumb_title = part | replace: "-", " " | replace: "_", " " | capitalize %}  {% comment%}e.g., "web-dev" → "Web Dev"{% endcomment %}
+  {% endif %}
+  
+  {% comment%}Add crumb (URL + title) to the array{% endcomment %}
+  {% assign new_crumb = "" | split: "" %}
+  {% assign new_crumb = new_crumb | push: current_path %}
+  {% assign new_crumb = new_crumb | push: crumb_title %}
+  {% assign crumbs = crumbs | push: new_crumb %}
+{% endfor %}
+
+{% comment %}Render breadcrumbs HTML{% endcomment %}
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol class="breadcrumbs__list">
+    {% for crumb in crumbs %}
+      {% assign crumb_url = crumb[0] %}
+      {% assign crumb_title = crumb[1] %}
+      
+      {% comment%}Check if this is the last crumb (current page){% endcomment %}
+      {% if forloop.last %}
+        <li class="breadcrumbs__item breadcrumbs__item--current" aria-current="page">
+          {{ crumb_title }}
+        </li>
+      {% else %}
+        <li class="breadcrumbs__item">
+          <a href="{{ crumb_url | relative_url }}" class="breadcrumbs__link">{{ crumb_title }}</a>
+        </li>
+        <li class="breadcrumbs__separator">/</li>  {% comment%}Separator (customize as needed){% endcomment %}
+      {% endif %}
+    {% endfor %}
+  </ol>
+</nav>
