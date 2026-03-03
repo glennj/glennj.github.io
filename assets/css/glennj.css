@@ -1,0 +1,9 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+ol.breadcrumbs__list li {
+    list-style: none;
+    display: inline;
+}
