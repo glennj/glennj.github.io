@@ -2,7 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 style = {'dark': 'dark_background', 'light': 'seaborn-v0_8-muted'}
-theme = 'dark'
+#theme = 'dark'
+theme = 'light'
 
 # color styles
 #plt.style.use('dark_background')
@@ -22,7 +23,7 @@ p4 = (20, 0)
 # 1. Plot the points (Red dots)
 points = [p0, p1, p2, p3, p4]
 labels = ['Origin', 'Prism 1', 'Prism 2', 'Prism 3', 'Prism 4']
-colors = ['blue', 'green', 'red', 'orange', 'grey']
+colors = ['blue', 'red', 'green', 'orange', 'grey']
 label_coords = [
     (0, -0.8),  # Origin
     (10, 10.5),    # Prism 1
@@ -32,23 +33,25 @@ label_coords = [
 ]
 
 # 2. Draw the arrows with specific colors
+shrinkage = 0.02  # Adjust this value to control the arrowhead size
+
 # Arrow: (0, 0) to Point 2 (Blue)
 ax.annotate('', xy=p2, xytext=(0, 0),
-            arrowprops=dict(facecolor='blue', edgecolor='blue', shrink=0.01, width=1.5, headwidth=8))
+            arrowprops=dict(facecolor='blue', edgecolor='blue', shrink=shrinkage, width=1.5, headwidth=8))
 
 # Arrow: Point 2 to Point 1 (Green)
 ax.annotate('', xy=p1, xytext=p2,
-            arrowprops=dict(facecolor='green', edgecolor='green', shrink=0.01, width=1.5, headwidth=8))
+            arrowprops=dict(facecolor='green', edgecolor='green', shrink=shrinkage, width=1.5, headwidth=8))
 
 # Arrow: Point 1 to Point 3 (Red)
 ax.annotate('', xy=p3, xytext=p1,
-            arrowprops=dict(facecolor='red', edgecolor='red', shrink=0.01, width=1.5, headwidth=8))
+            arrowprops=dict(facecolor='red', edgecolor='red', shrink=shrinkage, width=1.5, headwidth=8))
 
 # Arrow: Point 3 at 45 degrees (Orange)
 # We calculate a point at (30+7, 10+7) to ensure a perfect 45-degree slope
 end_p3_arrow = (p3[0] + 7, p3[1] + 7)
 ax.annotate('', xy=end_p3_arrow, xytext=p3,
-            arrowprops=dict(facecolor='orange', edgecolor='orange', shrink=5, width=1.5, headwidth=8))
+            arrowprops=dict(facecolor='orange', edgecolor='orange', shrink=shrinkage, width=1.5, headwidth=8))
 
 # now add the points and labels on top of the arrows
 for p, label, color, label_coord in zip(points, labels, colors, label_coords):
