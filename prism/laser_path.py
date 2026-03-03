@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 style = {'dark': 'dark_background', 'light': 'seaborn-v0_8-muted'}
-theme = 'dark'
-#theme = 'light'
+#theme = 'dark'
+theme = 'light'
 
 # color styles
 #plt.style.use('dark_background')
@@ -33,25 +33,23 @@ label_coords = [
 ]
 
 # 2. Draw the arrows with specific colors
-shrinkage = 0.03  # Adjust this value to control the arrowhead size
-
 # Arrow: (0, 0) to Point 2 (Blue)
 ax.annotate('', xy=p2, xytext=(0, 0),
-            arrowprops=dict(facecolor='blue', edgecolor='blue', shrink=shrinkage, width=1.5, headwidth=8))
+            arrowprops=dict(facecolor='blue', edgecolor='blue', shrink=0.025, width=1.5, headwidth=8))
 
 # Arrow: Point 2 to Point 1 (Green)
 ax.annotate('', xy=p1, xytext=p2,
-            arrowprops=dict(facecolor='green', edgecolor='green', shrink=shrinkage, width=1.5, headwidth=8))
+            arrowprops=dict(facecolor='green', edgecolor='green', shrink=0.025, width=1.5, headwidth=8))
 
 # Arrow: Point 1 to Point 3 (Red)
 ax.annotate('', xy=p3, xytext=p1,
-            arrowprops=dict(facecolor='red', edgecolor='red', shrink=shrinkage, width=1.5, headwidth=8))
+            arrowprops=dict(facecolor='red', edgecolor='red', shrink=0.013, width=1.5, headwidth=8))
 
 # Arrow: Point 3 at 45 degrees (Orange)
 # We calculate a point at (30+7, 10+7) to ensure a perfect 45-degree slope
 end_p3_arrow = (p3[0] + 7, p3[1] + 7)
 ax.annotate('', xy=end_p3_arrow, xytext=p3,
-            arrowprops=dict(facecolor='orange', edgecolor='orange', shrink=shrinkage, width=1.5, headwidth=8))
+            arrowprops=dict(facecolor='orange', edgecolor='orange', shrink=0, width=1.5, headwidth=8))
 
 # now add the points and labels on top of the arrows
 for p, label, color, label_coord in zip(points, labels, colors, label_coords):

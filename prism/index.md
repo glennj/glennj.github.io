@@ -13,7 +13,7 @@
 
 [laser_path-light.svg](./laser_path-light.svg)
 
-<a href='./laser_path-light.svg'><img src='./laser_path-light.svg' alt='light mode plot' title='light mode plot' /></a>
+<img src='./laser_path-light.svg' alt='light mode plot' title='light mode plot' />
 
 ## Python source
 
