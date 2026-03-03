@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 style = {'dark': 'dark_background', 'light': 'seaborn-v0_8-muted'}
-#theme = 'dark'
-theme = 'light'
+theme = 'dark'
+#theme = 'light'
 
 # color styles
 #plt.style.use('dark_background')
@@ -33,7 +33,7 @@ label_coords = [
 ]
 
 # 2. Draw the arrows with specific colors
-shrinkage = 0.02  # Adjust this value to control the arrowhead size
+shrinkage = 0.03  # Adjust this value to control the arrowhead size
 
 # Arrow: (0, 0) to Point 2 (Blue)
 ax.annotate('', xy=p2, xytext=(0, 0),
