@@ -4,7 +4,9 @@
 document.addEventListener('DOMContentLoaded', function() {  
   // Target only terminal command code blocks (bash/shell)  
   // Adjust selectors to match your language tags (e.g., "language-bash", "language-shell")  
-  const codeBlocks = document.querySelectorAll('pre > code.language-bash, pre > code.language-shell');  
+  // const codeBlocks = document.querySelectorAll('pre > code.language-bash, pre > code.language-shell');  
+  // glennj: all codeblocks
+  const codeBlocks = document.querySelectorAll('pre.highlight > code');  
  
   codeBlocks.forEach(block => {  
     // Get the parent <pre> element (contains the code block)  
