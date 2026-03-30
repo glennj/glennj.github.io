@@ -54,7 +54,7 @@ IMO, if you're parsing a datetime string, manipulating it, and then formatting i
 [These tests][gigasecond-spec] are only passing because `%x` only considers the date part
 (the [canonical data][gigasecond-canonical] expects the full datetime).
 
-I'm working on the swift-scheduling exercise in moonscript and I'm considering adding the [date][date-rock] rock to the test-runner.
+I'm working on the swift-scheduling exercise in moonscript and I'm considering adding the [date][rock-date] rock to the test-runner.
 With this luarock:
 
 ```lua
@@ -96,10 +96,52 @@ My rant gets somewhat blunted when I actually read the [canonical-data][gigaseco
 
 _Sigh._
 
+## Rant Resolved
+
+_2026-03-29_
+
+I played around with some of the datetime-related luarocks ([date][rock-date], [luatz][rock-luatz]).
+I found that [lua-tz][rock-lua-tz] (yes, with a hyphen) is what I was looking for.
+
+`lua-tz` only provides 3 functions, but 2 of them are drop-in replacements for `os.time` and `os.date`:
+
+- `tz.time` takes an additional parameter, a timezone name, and the returned integer time value is the epoch value _in that timezone at that moment_.
+
+  This precisely solves the problem described above.
+
+  ```moonscript
+  > tz = require('tz')
+  > t = {['year']=2014, ['month']=11, ['day']=1, ['hour']=20, ['min']=0, ['sec']=0}
+  > print(os.time(t))
+  1414886400
+  > print(tz.time(t))
+  1414886400
+  > print(tz.time(t, 'UTC'))
+  1414872000
+  ```
+
+  Those values are the same that `date` emits. Huzzah!
+
+- `tz.date` takes an additional paramter, a timezone name.
+  The moment is formatted in that timezone.
+
+  Interestingly, these calls are to be equivalent:
+
+  ```moonscript
+  tz.date '%c', utc_time, 'UTC'
+  os.date '!%c', utc_time
+  ```
+
+  The key was being able to acquire the _UTC_ time.
+
+
 [article]: https://exercism.org/tracks/lua/exercises/high-scores/articles/oop
 [oop]: ./oop
-[date-rock]: https://luarocks.org/modules/tieske/date
 [os-date]: https://www.lua.org/manual/5.4/manual.html#pdf-os.date
 [os-time]: https://www.lua.org/manual/5.4/manual.html#pdf-os.time
 [gigasecond-spec]: https://github.com/exercism/lua/blob/d42266dcd372b6bac6b924d9cf9846c3c233e412/exercises/practice/gigasecond/gigasecond_spec.lua
 [gigasecond-canonical]: https://github.com/exercism/problem-specifications/blob/main/exercises/gigasecond/canonical-data.json
+[rock-date]: https://luarocks.org/modules/tieske/date
+[rock-luatz]: https://luarocks.org/modules/daurnimator/luatz
+[rock-lua-tz]: https://luarocks.org/modules/anaef/lua-tz
+
