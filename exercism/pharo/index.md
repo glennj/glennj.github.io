@@ -17,6 +17,7 @@ When you add new methods to existing classes, they can be configured as _extensi
 Let's walk through an example, starting with the [Armstrong Numbers][armstrong] exercise.
 That exercise gets you to write an `ArmstrongNumbers` class, and an `isArmstrongNumber: anInteger` instance method.
 Suppose we want to be able to provide `isArmstrong` as an instance method on the Integer class.
+(Note this is in a Pharo 12 image).
 
 1. first, let's just try it in the Playground
 
@@ -38,7 +39,8 @@ Suppose we want to be able to provide `isArmstrong` as an instance method on the
 
     ![it's now an extension](isExtensionMethod.png)
 
-1. and if we navigate back to the Exercise@ArmstrongNumbers package, we can see "Integer" show up in the class list (grey) where we can find our extension method. And it's only now that I realize I've mistyped it (not gonna redo the screenshots).
+1. and if we navigate back to the Exercise@ArmstrongNumbers package, we can see "Integer" show up in the class list (grey) where we can find our extension method.
+   _And it's only now that I realize I've mistyped it_  -- not gonna redo the screenshots.
 
     ![the view from the Exercise package](packageView.png)
 
