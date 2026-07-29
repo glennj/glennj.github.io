@@ -52,6 +52,9 @@ The [Exercism CLI](./cli) suits me very well.
 
 Some notes about [Lua](./lua/) on Exercism.
 
+## Pharo
+
+Some notes about [Pharo Smalltalk](./pharo/).
 
 [exercism]: https://exercism.org
 [powershell]: https://github.com/glennj/exercism.io/blob/main/powershell/journey.md

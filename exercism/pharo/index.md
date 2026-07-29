@@ -44,11 +44,11 @@ Suppose we want to be able to provide `isArmstrong` as an instance method on the
 
 So now, back to the playground and try it again:
 
-1. a number that is not an Armstrong number
+- a number that is not an Armstrong number
 
     ![42 is not an Armstrong number](isNotArmstrong.png)
 
-1. a number that _is_ an Armstrong number
+- a number that _is_ an Armstrong number
 
     ![9926315 is an Armstrong number](isAnArmstrong.png)
 
