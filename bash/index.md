@@ -8,6 +8,16 @@ I have build bash v5.3 and put the docs here:
 * [bash man page](./bash.html)
 * [bash reference manual](./bashref.html)
 
+## Version
+
+This is not up-to-date with the latest patch version, but it's the current minor version:
+
+```sh
+$ ~/bash/5.3/bin/bash --version
+GNU bash, version 5.3.0(1)-release (x86_64-pc-linux-gnu)
+Copyright (C) 2025 Free Software Foundation, Inc.
+```
+
 ## Source
 
 I downloaded the bash 5.3 tarball from [Chet Ramsey's bash page](https://tiswww.case.edu/php/chet/bash/bashtop.html).
