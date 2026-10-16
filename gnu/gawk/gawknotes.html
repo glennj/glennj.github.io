@@ -1,0 +1,989 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- 
+This manual is for maintainers of GNU awk.
+
+Copyright (C) 2024 Arnold Robbins.
+
+This is Edition 0.5 of GNU Awk Maintainer Notes.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation. -->
+<title>GNU Awk Maintainer Notes</title>
+
+<meta name="description" content="GNU Awk Maintainer Notes">
+<meta name="keywords" content="GNU Awk Maintainer Notes">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="#Top" rel="start" title="Top">
+<link href="#Index" rel="index" title="Index">
+<link href="#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="#GNU-Awk-Maintainership-Background-and-Context" rel="next" title="GNU Awk Maintainership Background and Context">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<h1 class="settitle" align="center">GNU Awk Maintainer Notes</h1>
+
+
+
+
+
+<div class="top" id="Top">
+<div class="header">
+<p>
+Next: <a href="#GNU-Awk-Maintainership-Background-and-Context" accesskey="n" rel="next">GNU <code>Awk</code> Background and Context</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="GNU-Awk-Maintainer-Notes"></span><h1 class="top">GNU Awk Maintainer Notes</h1>
+
+<p>This manual is for maintainers of GNU <code>awk</code>.
+</p>
+
+<div class="Contents_element" id="SEC_Contents">
+<h2 class="contents-heading">Table of Contents</h2>
+
+<div class="contents">
+
+<ul class="no-bullet">
+  <li><a id="toc-GNU-Awk-Background-and-Context" href="#GNU-Awk-Maintainership-Background-and-Context">1 GNU <code>Awk</code> Background and Context</a>
+  <ul class="no-bullet">
+    <li><a id="toc-Goals" href="#Goals">1.1 Goals</a></li>
+    <li><a id="toc-Some-History" href="#Some-History">1.2 Some History</a></li>
+    <li><a id="toc-First-Steps" href="#First-Steps">1.3 First Steps</a></li>
+  </ul></li>
+  <li><a id="toc-General-Maintainership-Background-1" href="#General-Maintainership-Background">2 General Maintainership Background</a>
+  <ul class="no-bullet">
+    <li><a id="toc-Workflow-and-Tooling-Outline" href="#Workflow-and-Tooling-Outline">2.1 Workflow and Tooling Outline</a>
+    <ul class="no-bullet">
+      <li><a id="toc-GNU-Coding-Standards" href="#GNU-Coding-Standards">2.1.1 GNU Coding Standards</a></li>
+      <li><a id="toc-maintain_002etexi" href="#maintain_002etexi">2.1.2 maintain.texi</a></li>
+      <li><a id="toc-Savannah" href="#Savannah">2.1.3 Savannah</a></li>
+      <li><a id="toc-Mailing-list-or-bug-tracker" href="#Mailing-list-or-bug-tracker">2.1.4 Mailing list or bug tracker</a></li>
+      <li><a id="toc-Release-management" href="#Release-management">2.1.5 Release management</a></li>
+    </ul></li>
+    <li><a id="toc-Technical-Skills" href="#Technical-Skills">2.2 Technical Skills</a>
+    <ul class="no-bullet">
+      <li><a id="toc-Git-skills" href="#Git-skills">2.2.1 Git skills</a></li>
+      <li><a id="toc-C-_0028and-maybe-also-C_002b_002b_0029" href="#C-_0028and-maybe-also-C_002b_002b_0029">2.2.2 C (and maybe also C++)</a></li>
+      <li><a id="toc-Make" href="#Make">2.2.3 Make</a></li>
+      <li><a id="toc-Autoconf_002c-Automake_002c-libtool_002c-GNU-m4" href="#Autoconf_002c-Automake_002c-libtool_002c-GNU-m4">2.2.4 Autoconf, Automake, libtool, GNU <code>m4</code></a></li>
+      <li><a id="toc-Texinfo" href="#Texinfo">2.2.5 Texinfo</a></li>
+      <li><a id="toc-troff-_002dman-_002d_002d_002d-semi_002doptional" href="#troff-_002dman-_002d_002d_002d-semi_002doptional">2.2.6 <code>troff</code> <samp>-man</samp> &mdash; semi-optional</a></li>
+      <li><a id="toc-GDB_002c-valgrind_002c-and-gprof" href="#GDB_002c-valgrind_002c-and-gprof">2.2.7 GDB, <code>valgrind</code>, and <code>gprof</code></a></li>
+      <li><a id="toc-The-GCC-Compile-Farm" href="#The-GCC-Compile-Farm">2.2.8 The GCC Compile Farm</a></li>
+    </ul></li>
+  </ul></li>
+  <li><a id="toc-General-Maintainership-1" href="#General-Maintainership">3 General Maintainership</a>
+  <ul class="no-bullet">
+    <li><a id="toc-Compiler-_002f-Interpreter-Skills" href="#Compiler-_002f-Interpreter-Skills">3.1 Compiler / Interpreter Skills</a></li>
+    <li><a id="toc-Learn-The-Language" href="#Learn-The-Language">3.2 Learn The Language</a></li>
+    <li><a id="toc-Test-Suite-Structure" href="#Test-Suite-Structure">3.3 Test Suite Structure</a></li>
+    <li><a id="toc-Documentation" href="#Documentation">3.4 Documentation</a></li>
+    <li><a id="toc-Portability_003a-POSIX-and-Non_002dPOSIX" href="#Portability_003a-POSIX-and-Non_002dPOSIX">3.5 Portability: POSIX and Non-POSIX</a></li>
+    <li><a id="toc-GNULIB" href="#GNULIB">3.6 GNULIB</a></li>
+  </ul></li>
+  <li><a id="toc-Index-1" href="#Index" rel="index">Index</a></li>
+</ul>
+</div>
+</div>
+<hr>
+<div class="chapter" id="GNU-Awk-Maintainership-Background-and-Context">
+<div class="header">
+<p>
+Next: <a href="#General-Maintainership-Background" accesskey="n" rel="next">General Maintainership Background</a>, Previous: <a href="#Top" accesskey="p" rel="prev">GNU Awk Maintainer Notes</a>, Up: <a href="#Top" accesskey="u" rel="up">GNU Awk Maintainer Notes</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="GNU-Awk-Background-and-Context"></span><h2 class="chapter">1 GNU <code>Awk</code> Background and Context</h2>
+
+<p>The purpose of this document is to provide background on GNU <code>awk</code>,
+(<code>gawk</code>), it&rsquo;s code and it&rsquo;s development.  The idea is to have
+something new maintainers can read in order to help them come up to
+speed.
+</p>
+<ul class="section-toc">
+<li><a href="#Goals" accesskey="1">Goals</a></li>
+<li><a href="#Some-History" accesskey="2">Some History</a></li>
+<li><a href="#First-Steps" accesskey="3">First Steps</a></li>
+</ul>
+<div class="section" id="Goals">
+<h3 class="section">1.1 Goals</h3>
+<p>Here are my personal goals for bringing new maintainers on board.
+Over the next few years, I want to:
+</p>
+<ul>
+<li> Do a thorough review of the manual, and get it published again.
+
+</li><li> Bring you two up to speed to the point that each of you would be able to:
+
+<ul class="no-bullet">
+<li>&mdash; Fix bugs as reported on the bug list
+
+</li><li>&mdash; Make releases
+
+</li><li>&mdash; Make improvements in the code base
+</li></ul>
+
+</li><li> This will allow me to become &ldquo;Maintainer Emeritus&rdquo;.
+In that position I hope that I would still be contributing,
+but no longer bearing the main responsibility.
+</li></ul>
+
+<p>This won&rsquo;t happen overnight.
+The code base is large and there&rsquo;s a lot to come up to speed on, and I don&rsquo;t
+expect miracles, we all have lives and day jobs.
+&ldquo;Slow but steady&rdquo; will be the watch word.
+</p>
+
+</div>
+<div class="section" id="Some-History">
+<h3 class="section">1.2 Some History</h3>
+
+<p>The manual states:
+</p>
+<blockquote>
+<span id="index-Rubin_002c-Paul"></span>
+<span id="index-Fenlason_002c-Jay"></span>
+<span id="index-Stallman_002c-Richard"></span>
+<span id="index-Woods_002c-John"></span>
+<span id="index-Trueman_002c-David"></span>
+<p>Paul Rubin wrote <code>gawk</code> in 1986.  Jay Fenlason completed it,
+with advice from Richard Stallman.  John Woods contributed
+parts of the code as well.  In 1988 and 1989, David Trueman,
+with help from me, thoroughly reworked <code>gawk</code> for compatibility
+with the newer <code>awk</code>.  Circa 1994, I became the primary
+maintainer.  Current development focuses on bug fixes,
+performance improvements, standards compliance, and,
+occasionally, new features.
+</p></blockquote>
+
+<span id="index-Aho_002c-Alfred"></span>
+<span id="index-Weinberger_002c-Peter"></span>
+<span id="index-Kernighan_002c-Brian"></span>
+<p>In October of 1987, I picked up a copy of the Aho, Kernighan and Weinberger
+book on <code>awk</code>.
+Up until then, the documentation on <code>awk</code> was so skimpy that I&rsquo;d stayed away
+from it; the book made things much clearer, and also more exciting!
+I wanted to give (new) <code>awk</code> a try.
+</p>
+<p>New <code>awk</code> wasn&rsquo;t easily available at the time, so I went to see what
+the GNU project had, and lo and behold, there was indeed a GNU <code>awk</code>.
+This very first version was a (buggy!) clone of the original Unix
+<code>awk</code>. Having an interest in compiler and interpreter technology, I
+volunteered to work on <code>gawk</code> and help bring it into compatibility with
+the new version. (I was single and owned my own Unix system...)
+</p>
+<span id="index-Trueman_002c-David-1"></span>
+<p>David Trueman had already volunteered to do that, so I joined his effort.
+We set up UUCP links and exchanged diffs via email; he was the primary
+maintainer.
+</p>
+<span id="index-Barlow-Close_002c-Diane"></span>
+<p>At some point, I asked if there was a manual; a 90 page Texinfo draft existed
+(written by Diane Barlow Close) and I started adding to and improving it.
+</p>
+<span id="index-Trueman_002c-David-2"></span>
+<span id="index-Robbins_002c-Arnold"></span>
+<p>David and I met a time or two in person at USENIX conferences; I may even still have some
+notes on our feature plans, most of which eventually made their way into
+<code>gawk</code>.
+</p>
+<span id="index-Trueman_002c-David-3"></span>
+<p>Circa 1994 (I don&rsquo;t remember if it was &rsquo;93 or &rsquo;94) David had to pull out of
+the project, and I became the sole maintainer.
+We had a port to MS-DOS and also to VMS around then, and <code>mawk</code> had
+also been written and released.
+There were also various ports to different kinds of then-common Unix systems.
+</p>
+<span id="index-Adams_002c-Rick"></span>
+<p>In the mid-90s <code>gawk</code> got some heavy-duty use (Rick Adams as UUNET
+started to use it for his accounting because of the &ldquo;no arbitrary limits&rdquo;
+principle), but people were still using the Unix version mostly.
+</p>
+<p>As Linux systems started to grow in popularity, <code>gawk</code> became
+<em>the</em> installed version of <code>awk</code>, and it really began to stabilize
+and get many bugs worked out.
+When it was just &ldquo;also&rdquo; available, it wasn&rsquo;t as heavily stressed as when it
+was <em>the</em> <code>awk</code>.
+So, this was good.
+</p>
+<p>The manual has a section listing in detail the order in which features were
+added to <code>gawk</code> over time.
+That list is very long, so there&rsquo;s no need to repeat it here.
+</p>
+<p>The major versions of <code>gawk</code> through 3.x all built a parse tree
+representing the program, and then recursively evaluated that tree in order to
+execute the program.
+</p>
+<span id="index-Haque_002c-John"></span>
+<p>At version 4.0, that changed, when an outside developer (John Haque) changed
+<code>gawk</code> to generate and interpret &ldquo;byte codes&rdquo; representing the
+program. As part of that work, John also added an <code>awk</code>-level debugger, which is
+really useful.
+This structure remains in place today.
+</p>
+<span id="index-Haque_002c-John-1"></span>
+<p>John Haque left the project in December of 2012 over a disagreement with me
+as to how the project should be run.
+He wanted to see things being done in a certain way, which I did not have the
+cycles to do, but he himself did not want to help make those changes.
+(I had offered to promote him to co-maintainer, but he declined).
+Effectively, &ldquo;here is what you should do, but I&rsquo;m not going to help.&rdquo;
+Since that didn&rsquo;t suit me, he left in a bit of huff, but that&rsquo;s life.
+</p>
+<p>Today, I feel like I have stretched the <code>awk</code> language as much as it
+should be (more really).
+I think future facilities should be added via the extension mechanism and not
+via language changes.
+</p>
+<p>There remains plenty of interesting work to do in terms of the code
+structure, data structures, and performance, which I no longer have the
+motivation to really tackle;
+I&rsquo;m hoping new blood will be able to do some of these things. :-)
+</p>
+<p>For what it&rsquo;s worth, as many versions as I could find are in the
+<code>git</code> repository and tagged appropriately, so it&rsquo;s possible to
+go back and see the earlier versions.
+</p>
+
+</div>
+<div class="section" id="First-Steps">
+<h3 class="section">1.3 First Steps</h3>
+
+<p>Here are some first steps for every new co-maintainer candidate:
+</p>
+<ol>
+<li> Start the process to sign paperwork to assign copyright in your changes
+to <code>gawk</code> and its documentation to the Free Software Foundation.
+Please send an email to
+<a href="mailto:copyright-clerk@fsf.org">copyright-clerk@fsf.org</a>
+asking for paperwork to assign copyright in all current and future changes to
+<code>gawk</code> and its documentation to the FSF.
+You will have to do this before any patches can be integrated into the code
+base.
+
+</li><li> Check out the <code>gawk</code> documentation online at the GNU project.
+In particular, look at the <code>gawk</code> workflow document for how things
+will start out for your contributions.
+
+</li><li> Also, if you haven&rsquo;t read the <code>gawk</code> manual, please do.
+You will probably know a lot of what&rsquo;s there, but maybe not everything.
+There&rsquo;s a lot there.
+The section on contributing code is most relevant in terms of how patches
+need to be done, but you&rsquo;ll need to learn the language itself as well.
+</li></ol>
+
+<hr>
+</div>
+</div>
+<div class="chapter" id="General-Maintainership-Background">
+<div class="header">
+<p>
+Next: <a href="#General-Maintainership" accesskey="n" rel="next">General Maintainership</a>, Previous: <a href="#GNU-Awk-Maintainership-Background-and-Context" accesskey="p" rel="prev">GNU <code>Awk</code> Background and Context</a>, Up: <a href="#Top" accesskey="u" rel="up">GNU Awk Maintainer Notes</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="General-Maintainership-Background-1"></span><h2 class="chapter">2 General Maintainership Background</h2>
+
+<p>This chapter describes the processes and tools you shold
+be familiar with, with general pointers to specific
+documents to read.  All of them can be found easily on
+the Internet, so specific URLs are not included.
+</p>
+<ul class="section-toc">
+<li><a href="#Workflow-and-Tooling-Outline" accesskey="1">Workflow and Tooling Outline</a></li>
+<li><a href="#Technical-Skills" accesskey="2">Technical Skills</a></li>
+</ul>
+<div class="section" id="Workflow-and-Tooling-Outline">
+<h3 class="section">2.1 Workflow and Tooling Outline</h3>
+
+<p>This section provides some background introductory material and pointers.
+</p>
+<ul class="section-toc">
+<li><a href="#GNU-Coding-Standards" accesskey="1">GNU Coding Standards</a></li>
+<li><a href="#maintain_002etexi" accesskey="2">maintain.texi</a></li>
+<li><a href="#Savannah" accesskey="3">Savannah</a></li>
+<li><a href="#Mailing-list-or-bug-tracker" accesskey="4">Mailing list or bug tracker</a></li>
+<li><a href="#Release-management" accesskey="5">Release management</a></li>
+</ul>
+<div class="subsection" id="GNU-Coding-Standards">
+<h4 class="subsection">2.1.1 GNU Coding Standards</h4>
+<p>This document describes how to write code for the GNU Project.
+If you haven&rsquo;t read it, you should.
+The most important point it makes is the &ldquo;no arbitrary limits&rdquo; principle:
+GNU programs should not fall over due to fixed-size buffers, for example.
+</p>
+<p>The document also describes code formatting standards for GNU programs.
+Note though, that with one exception, <code>gawk</code> does not follow the coding
+style, instead using standard &ldquo;K &amp; R&rdquo; code layout, with tabs, not spaces. The
+one exception is that function names in function definitions are placed at the
+beginning of the line.
+</p>
+<p>These days the document lives in GNULIB:
+</p>
+<div class="example">
+<pre class="example">git clone https://git.savannah.gnu.org/git/gnulib.git
+cd gnulib/doc
+texi2pdf standards.texi
+</pre></div>
+
+<p>The <code>gawk</code> manual has a detailed section on C coding style; please read
+that after reading the coding standards.
+</p>
+</div>
+<div class="subsection" id="maintain_002etexi">
+<h4 class="subsection">2.1.2 maintain.texi</h4>
+<p>This document describes high level general stuff to know if you&rsquo;re going to
+be a GNU maintainer.
+These days it also lives in GNULIB:
+</p>
+<div class="example">
+<pre class="example">cd gnulib/doc
+texi2pdf maintain.texi
+</pre></div>
+
+<p>It&rsquo;s necessary, if not exciting, reading.
+</p>
+</div>
+<div class="subsection" id="Savannah">
+<h4 class="subsection">2.1.3 Savannah</h4>
+<p>The GNU project has its own software hosting, mainly for Git and CVS,
+called
+<a href="https://savannah.gnu.org">Savannah</a>.
+This is where the <code>gawk</code> Git repository is maintained.
+It&rsquo;s worth poking around there.
+Eventually you&rsquo;ll want to create a user account so that you&rsquo;ll be able to
+commit directly to the repository, but this is not urgent at this point.
+</p>
+</div>
+<div class="subsection" id="Mailing-list-or-bug-tracker">
+<h4 class="subsection">2.1.4 Mailing list or bug tracker</h4>
+<p><code>gawk</code> has two mailing lists:
+<a href="mailto:bug-gawk@gnu.org">bug-gawk@gnu.org</a>
+for bug reports, and
+<a href="mailto:help-gawk@gnu.org">help-gawk@gnu.org</a>
+for people looking for help.
+I sometimes skim the latter via the web archive but do not receive it.
+I leave it to other folks to answer questions there, or not, as it happens.
+</p>
+<p>I don&rsquo;t really wish to change off of mailing list usage.
+On the other hand, if one of you wants to set up and manage a bug tracker, then let&rsquo;s
+discuss.
+</p>
+</div>
+<div class="subsection" id="Release-management">
+<h4 class="subsection">2.1.5 Release management</h4>
+<p><code>gawk</code> use X.Y.Z versioning.
+The X is the major version, currently 5.
+It changes rarely.
+The Y is the minor version, changing whenever there are enough new features
+to make it worth doing a major release.
+The Z is the patch level.
+Those patch releases happen 2-3 times a year.
+</p>
+<p>Releases used to be more frequent, but I have purposely slowed down, trying
+to avoid adding new features or making major changes.
+</p>
+<p>You can look at the <samp>NEWS*</samp> files to get a sense of the kinds of things
+that change between releases.
+You can skim the <samp>ChangeLog*</samp> files to see descriptions of the kinds of
+changes that happen.
+Most are small, incremental changes.
+</p>
+
+</div>
+</div>
+<div class="section" id="Technical-Skills">
+<h3 class="section">2.2 Technical Skills</h3>
+
+<p>Here are some the technical skills you&rsquo;ll need as a maintainer.
+These all also apply pretty much across the board, not just to <code>gawk</code>.
+</p>
+<ul class="section-toc">
+<li><a href="#Git-skills" accesskey="1">Git skills</a></li>
+<li><a href="#C-_0028and-maybe-also-C_002b_002b_0029" accesskey="2">C (and maybe also C++)</a></li>
+<li><a href="#Make" accesskey="3">Make</a></li>
+<li><a href="#Autoconf_002c-Automake_002c-libtool_002c-GNU-m4" accesskey="4">Autoconf, Automake, libtool, GNU <code>m4</code></a></li>
+<li><a href="#Texinfo" accesskey="5">Texinfo</a></li>
+<li><a href="#troff-_002dman-_002d_002d_002d-semi_002doptional" accesskey="6"><code>troff</code> <samp>-man</samp> &mdash; semi-optional</a></li>
+<li><a href="#GDB_002c-valgrind_002c-and-gprof" accesskey="7">GDB, <code>valgrind</code>, and <code>gprof</code></a></li>
+<li><a href="#The-GCC-Compile-Farm" accesskey="8">The GCC Compile Farm</a></li>
+</ul>
+<div class="subsection" id="Git-skills">
+<h4 class="subsection">2.2.1 Git skills</h4>
+<p><code>gawk</code>, and just about all the other GNU projects, use Git for source
+code management.
+Using the <code>git</code> command line is <strong>strongly</strong> recommended.
+I have seen things messed up too often when relying on graphical Git tools.
+</p>
+<p>The <code>gawk</code> workflow document provides an extremely basic introduction
+to using Git.
+That&rsquo;s a starting point, but you should also invest time in going beyond
+what&rsquo;s presented there.
+</p>
+</div>
+<div class="subsection" id="C-_0028and-maybe-also-C_002b_002b_0029">
+<h4 class="subsection">2.2.2 C (and maybe also C++)</h4>
+<p>I doubt this is an issue, but you should definitely have C skills.
+<code>gawk</code> is a very large C program.
+</p>
+<p>The code expects at least a C 99 capable compiler.
+I try to avoid being bleeding edge in the use of C features in order to allow
+for maximum portability.
+In particular, the OpenVMS C compiler isn&rsquo;t any further advanced than that,
+so as long as we want to continue to support OpenVMS we can&rsquo;t use the latest
+features.
+Personally, this doesn&rsquo;t bother me; I don&rsquo;t feel a need to use the latest
+features.
+</p>
+<p>It&rsquo;s an interesting question as to whether knowing C++ is necessary.
+Moving <code>gawk</code> to a simple subset of C++ in order to get away from its
+use of unions might not be a bad idea.
+On the other hand, it&rsquo;s a big chunk of work and I think that most of the rest of the
+<code>gawk</code> developers would <em>not</em> be happy working in C++.
+On the third hand, the parts of <code>gawk</code> they deal with are generally
+both small and localized, and they could probably manage.
+</p>
+</div>
+<div class="subsection" id="Make">
+<h4 class="subsection">2.2.3 Make</h4>
+<p>You should be comfortable with <code>make</code> and <samp>Makefile</samp>s.
+I try to keep the <samp>Makefile</samp>s portable to more than just GNU Make.
+<code>make</code> is the foundation for the &ldquo;Autotools.&rdquo;
+</p>
+</div>
+<div class="subsection" id="Autoconf_002c-Automake_002c-libtool_002c-GNU-m4">
+<h4 class="subsection">2.2.4 Autoconf, Automake, libtool, GNU <code>m4</code></h4>
+<p>The &ldquo;Autotools.&rdquo;
+You should read the manuals for each of these, at least.
+I like to use the latest <em>released</em> version of these tools, not whatever
+may be in Git on a particular day.
+</p>
+<p>These tools are what create the <code>configure</code> script. <code>autoconf</code>
+uses <code>m4</code> macros to create <code>configure</code>; you should have a basic
+understanding of <code>m4</code> also, although <code>autoconf</code> hides most of
+it from you.
+</p>
+<p>The files of interest are <samp>configure.ac</samp>, <samp>extension/configure.ac</samp>,
+and files in the <samp>m4</samp> directory.
+</p>
+</div>
+<div class="subsection" id="Texinfo">
+<h4 class="subsection">2.2.5 Texinfo</h4>
+
+<p>The various manuals are all written in Texinfo, the GNU Project&rsquo;s markup
+language.
+Texinfo can be used to produce Info files, HTML and (with TeX) PDF.
+I don&rsquo;t care for Info myself, but it&rsquo;s the GNU standard format, so the files
+are created during build for inclusion in releases.
+</p>
+<p>Texinfo has grown a lot over the years.
+I don&rsquo;t use every last feature in it.
+You may want to skim <samp>doc/gawk.texi</samp> to get a feel for it and then read
+some of the &ldquo;basics&rdquo; on Texinfo in the Texinfo documentation.
+</p>
+<p>Texinfo is important since, if you add a user-visible feature, you will have
+to document it in the manual as well.
+</p>
+</div>
+<div class="subsection" id="troff-_002dman-_002d_002d_002d-semi_002doptional">
+<h4 class="subsection">2.2.6 <code>troff</code> <samp>-man</samp> &mdash; semi-optional</h4>
+
+<p>The man pages are written in <code>troff</code>.
+A basic knowledge of how to write man pages is helpful.
+For the 5.3.0 release, I cut the
+<samp>gawk.1</samp> man page down in size by a lot, but it&rsquo;s still very large.
+</p>
+<p>The four-color reference card, <samp>awkcard.pdf</samp>, is written in
+<code>troff</code> and <code>tbl</code>. That&rsquo;s a much harder thing to deal with. I suspect
+that once I &ldquo;retire&rdquo; it can be dropped from the distribution, or marked as
+unmaintained.
+</p>
+</div>
+<div class="subsection" id="GDB_002c-valgrind_002c-and-gprof">
+<h4 class="subsection">2.2.7 GDB, <code>valgrind</code>, and <code>gprof</code></h4>
+
+<p>Debugging and profiling skills.  I&rsquo;ve been using <code>gdb</code> for
+decades, to the point where I can&rsquo;t really use any other debugger.
+Both Vim and Emacs have excellent integration for <code>gdb</code>.
+</p>
+<p><code>valgrind</code> is invaluable for dealing with memory leak issues.
+</p>
+<p><code>gprof</code> is occasionally necessary if you think there&rsquo;s a performance
+bottleneck somewhere.
+</p>
+</div>
+<div class="subsection" id="The-GCC-Compile-Farm">
+<h4 class="subsection">2.2.8 The GCC Compile Farm</h4>
+
+<p>Google this, and get yourself an account on it.
+It&rsquo;s a resource that I only recently started to leverage, but they have a
+number of machines that it&rsquo;s unlikely that you will have.
+So if you want to test <code>gawk</code> (or something else) on a particular
+architecture that they have, this is one way to go.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<div class="chapter" id="General-Maintainership">
+<div class="header">
+<p>
+Next: <a href="#Index" accesskey="n" rel="next">Index</a>, Previous: <a href="#General-Maintainership-Background" accesskey="p" rel="prev">General Maintainership Background</a>, Up: <a href="#Top" accesskey="u" rel="up">GNU Awk Maintainer Notes</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="General-Maintainership-1"></span><h2 class="chapter">3 General Maintainership</h2>
+
+
+<ul class="section-toc">
+<li><a href="#Compiler-_002f-Interpreter-Skills" accesskey="1">Compiler / Interpreter Skills</a></li>
+<li><a href="#Learn-The-Language" accesskey="2">Learn The Language</a></li>
+<li><a href="#Test-Suite-Structure" accesskey="3">Test Suite Structure</a></li>
+<li><a href="#Documentation" accesskey="4">Documentation</a></li>
+<li><a href="#Portability_003a-POSIX-and-Non_002dPOSIX" accesskey="5">Portability: POSIX and Non-POSIX</a></li>
+<li><a href="#GNULIB" accesskey="6">GNULIB</a></li>
+</ul>
+<div class="section" id="Compiler-_002f-Interpreter-Skills">
+<h3 class="section">3.1 Compiler / Interpreter Skills</h3>
+
+<span id="index-Levine_002c-John"></span>
+
+<p>You should be generally familiar with the terminology and components of
+compilers and interpreters. Things like: parsing, scanning, and symbol tables.  In
+particular, <code>gawk</code> uses a hand-written scanner and a <code>Bison</code>
+parser (LALR, based on YACC).  The <cite>Flex and Bison</cite> book by John
+Levine is probably a good resource if you have no background in this.
+</p>
+<p>As <code>gawk</code> parses a program, it builds up a linked list of so-called
+&ldquo;byte codes,&rdquo; representing the program to be run. This is &ldquo;compiling&rdquo;
+and &ldquo;code generation&rdquo; of a sort, but the instructions generated are
+simply structs representing operations defined by <code>gawk</code> itself, not
+code for a real machine or for any standard virtual machine such
+as the Java JVM or the .Net CLR.
+</p>
+<p>Once the progam is built, <code>gawk</code> then interprets the byte codes, by
+way of a loop around a gigantic switch statement on each type of
+instruction.
+</p>
+<p>The bytes codes are the basis also for the debugger and the pretty
+printer.  The pretty printer interprets the byte codes to reconstitute
+<code>awk</code> source code.  The pretty printer also handles line count
+profiling.
+</p>
+<p>The debugger remains something of a black box to me; I&rsquo;m not sure
+I can explain how it works off the top of my head.  (This is sad.)
+</p>
+<p>Future notes will talk about some of these things in more detail.
+</p>
+</div>
+<div class="section" id="Learn-The-Language">
+<h3 class="section">3.2 Learn The Language</h3>
+
+<p>To maintain <code>gawk</code>, you have to know <code>awk</code>, as well as what
+<code>gawk</code> provides in addition to standard <code>awk</code>.  There are three
+major resources for learning the language and for knowing how it&rsquo;s supposed to
+work.
+</p>
+<span id="index-Aho_002c-Alfred-1"></span>
+<span id="index-Kernighan_002c-Brian-1"></span>
+<span id="index-Weinberger_002c-Peter-1"></span>
+<ol>
+<li> <cite>The AWK Programming Language</cite> by Aho, Kernighan and Weinberger.
+The first edition of this book is the classic reference for <code>awk</code>,
+despite it being 35 years old.
+The second edition came out in 2023, and it has been completely
+rewritten to reflect the changes in BWK <code>awk</code>.
+It is compact, but very worthwhile.
+
+</li><li> The manual, <cite>GAWK: Effective AWK Programming</cite>, by yours truly.
+The manual has grown over the years, as <code>gawk</code> has
+grown. I&rsquo;ve done my best to make it both tutorial and reference for
+both standard <code>awk</code> and for <code>gawk</code>&rsquo;s capabilities.
+If you want to print it out, here are the steps:
+
+<div class="example">
+<pre class="example">cd /path/to/gawk/repo
+./bootstrap.sh &amp;&amp; ./configure &amp;&amp; make
+cd doc
+make pdf
+</pre></div>
+
+<p>The <samp>gawk.pdf</samp> file will be the manual. You&rsquo;ll need all the right TeX
+and Texinfo bits installed for this.
+Alternatively, you can find it online in various formats at
+<a href="https://www.gnu.org/software/gawk/manual/">https://www.gnu.org/software/gawk/manual/</a>.
+</p>
+<p>Eventually y&rsquo;all will be maintaining this manual, so you should
+become familiar with it in any case.
+</p>
+<p>You should read the other Texinfo files too, at your leisure:
+<samp>gawkinet.pdf</samp> for networking with <code>gawk</code>, and
+<samp>gawkworkflow.pdf</samp>. The workflow document is most relevant for getting started
+working with the team.
+</p>
+</li><li> The POSIX standard for <code>awk</code>.
+This can be found online at:
+<a href="https://pubs.opengroup.org/onlinepubs/9699919799/utilities/awk.html">https://pubs.opengroup.org/onlinepubs/9699919799/utilities/awk.html</a>.
+
+<p>It is the official standard for <code>awk</code>. It&rsquo;s written
+in more formal prose than the AK&amp;W book or the <code>gawk</code> manual.  It&rsquo;s
+handy to have a copy of this to refer to, to know what POSIX specifies
+and what it doesn&rsquo;t.  In particular, <code>gawk</code> <samp>--posix</samp> is
+supposed to be (mostly) POSIX compliant, meaning that all <code>gawk</code>
+extensions are disabled.
+</p>
+<p>There are a few (minor) areas where <code>gawk</code> <samp>--posix</samp> doesn&rsquo;t
+follow the standard, since doing so makes it too painful to use.  See the
+<samp>POSIX.STD</samp> file in the distribution (or Git).
+</p></li></ol>
+
+
+</div>
+<div class="section" id="Test-Suite-Structure">
+<h3 class="section">3.3 Test Suite Structure</h3>
+
+<p>The test suite is fairly formalized. For each test <var>foo</var>, there is at least a
+<code><var>foo</var>.awk</code> and a <samp><var>foo</var>.ok</samp> file. Optionally, there may be a
+<samp><var>foo</var>.in</samp> file, which is input data for <samp><var>foo</var>.awk</samp> to process.
+<samp><var>foo</var>.ok</samp> is the combined standard output and standard error from running
+<code>gawk</code> on <code><var>foo</var>.awk</code> (with <samp><var>foo</var>.in</samp>, if relevant).
+</p>
+<p>Adding new tests generally does not require actually writing the test stanzas.
+Instead the <samp>Makefile</samp> process takes care of this, using an <code>awk</code>
+script that reads <samp>Makefile.am</samp> and generates the test stanzas for any
+tests that have not been written manually.
+</p>
+<p>To add a new test, first be sure that <code>configure</code> and <code>make</code>
+have already been run.  You should also have the &ldquo;Autotools&rdquo; installed, using
+the same versions as I do.  In that case, the steps to add a test involve
+editing <samp>Makefile.am</samp>:
+</p>
+<ol>
+<li> In the list of files for <code>EXTRA_DIST</code>, add <samp><var>foo</var>.awk</samp> and
+<samp><var>foo</var>.ok</samp>. Add <samp><var>foo</var>.in</samp> also if relevant. Keep this list sorted
+alphabetically.
+
+</li><li> Add the new test name in the relevant list:
+
+<table>
+<tr><td width="30%"><code>ARRAYDEBUG_TESTS</code></td><td width="70%">Array debugging tests.</td></tr>
+<tr><td width="30%"><code>BASIC_TESTS</code></td><td width="70%">Tests for standard <code>awk</code> functionality.</td></tr>
+<tr><td width="30%"><code>EXTRA_TESTS</code></td><td width="70%">Tests we don&rsquo;t usually run.  (I should rethink these, maybe.)</td></tr>
+<tr><td width="30%"><code>GAWK_EXT_TESTS</code></td><td width="70%">Tests of <code>gawk</code>-specific extensions.</td></tr>
+<tr><td width="30%"><code>INET_TESTS</code></td><td width="70%">Networking facility tests.</td></tr>
+<tr><td width="30%"><code>LOCALE_CHARSET_TESTS</code></td><td width="70%">Tests whose results depend on different locales.</td></tr>
+<tr><td width="30%"><code>MACHINE_TESTS</code></td><td width="70%">Tests that may vary based on machine architecture.</td></tr>
+<tr><td width="30%"><code>SHLIB_TESTS</code></td><td width="70%">Tests of the extension facility.</td></tr>
+<tr><td width="30%"><code>UNIX_TESTS</code></td><td width="70%">Tests that require *nix.</td></tr>
+</table>
+
+</li><li> In addition, there are a number of <code>NEED_<var>xxx</var></code> groups listing tests that
+need additional <code>gawk</code> options, such as <samp>--lint</samp> or
+<samp>--debug</samp>. The <samp>Makefile</samp> doesn&rsquo;t use them directly. Instead, the
+<code>test/Gentests</code> script, which generates the test stanzas, reads
+<samp>Makefile.am</samp> and processes these lists in order to generate the test
+stanzas.  I recommend reviewing the <code>test/Gentests</code> script as well.
+
+</li><li> After saving <samp>Makefile.am</samp>, just run <code>make</code>, and everything
+will be regenerated.  This should be done in the top level directory. This will
+also update <samp>pc/Makefile.tst</samp>, which is used for running the tests on
+MinGW.
+</li></ol>
+
+
+</div>
+<div class="section" id="Documentation">
+<h3 class="section">3.4 Documentation</h3>
+
+<p>The <samp>doc</samp> directory contains all of <code>gawk</code>&rsquo;s documentation.  This
+includes manuals in Texinfo as well as man pages, and a four-color
+reference card, written in <code>tbl</code> and <code>troff</code>.
+</p>
+<p>The various files are:
+</p>
+<dl compact="compact">
+<dt><span><code>ChangeLog*</code></span></dt>
+<dd><p>ChangeLog files tracking changes.
+</p>
+</dd>
+<dt><span><code>Makefile.am</code></span></dt>
+<dt><span><code>Makefile.in</code></span></dt>
+<dd><p><samp>Makefile</samp> stuff via the Autotools.
+</p>
+</dd>
+<dt><span><code>README.card</code></span></dt>
+<dt><span><code>ad.block</code></span></dt>
+<dt><span><code>awkcard.in</code></span></dt>
+<dt><span><code>cardfonts</code></span></dt>
+<dt><span><code>colors</code></span></dt>
+<dt><span><code>macros</code></span></dt>
+<dt><span><code>no.colors</code></span></dt>
+<dt><span><code>setter.outline</code></span></dt>
+<dd><p>The files for making the reference card.
+</p>
+</dd>
+<dt><span><code>api-figure*.fig</code></span></dt>
+<dt><span><code>api-figure*.*</code></span></dt>
+<dt><span><code>array-elements.fig</code></span></dt>
+<dt><span><code>array-elements.*</code></span></dt>
+<dt><span><code>general-program.fig</code></span></dt>
+<dt><span><code>general-program.*</code></span></dt>
+<dt><span><code>lflashlight-small.xpic</code></span></dt>
+<dt><span><code>lflashlight.*</code></span></dt>
+<dt><span><code>process-flow.fig</code></span></dt>
+<dt><span><code>process-flow.*</code></span></dt>
+<dt><span><code>rflashlight-small.xpic</code></span></dt>
+<dt><span><code>rflashlight.*</code></span></dt>
+<dt><span><code>statist.*</code></span></dt>
+<dd><p>Image files used in the manual, both the original
+from the drawing programs (<samp>.fig</samp> and <samp>.xpic</samp>) and the
+generated files.
+</p>
+</dd>
+<dt><span><code>awkforai.txt</code></span></dt>
+<dd><p>A draft of an article for ACM SIGPLAN Notices on why
+<code>awk</code> is good for AI.
+</p>
+</dd>
+<dt><span><code>bc_notes</code></span></dt>
+<dt><span><code>implementation-notes.txt</code></span></dt>
+<dd><p>Some implementation notes.
+(I should review these.)
+</p>
+</dd>
+<dt><span><code>gawk.1</code></span></dt>
+<dt><span><code>gawkbug.1</code></span></dt>
+<dt><span><code>igawk.1</code></span></dt>
+<dt><span><code>pm-gawk.1</code></span></dt>
+<dd><p>Manual pages. <samp>igawk.1</samp> is no longer installed.
+</p>
+</dd>
+<dt><span><code>gawkinet.texi</code></span></dt>
+<dt><span><code>gawk.texi</code></span></dt>
+<dt><span><code>gawkworkflow.texi</code></span></dt>
+<dt><span><code>pm-gawk.texi</code></span></dt>
+<dt><span><code>texinfo.tex</code></span></dt>
+<dd><p>The Texinfo manuals.
+</p>
+<span id="index-Colombo_002c-Antonio"></span>
+</dd>
+<dt><span><code>it/*</code></span></dt>
+<dd><p>The Italian translation of the manual and of the man
+pages<a id="DOCF1" href="#FOOT1"><sup>1</sup></a>.
+</p>
+</dd>
+<dt><span><code>wordlist*</code></span></dt>
+<dd><p>Lists of valid words that my <i>spell</i>(1) doesn&rsquo;t think are
+valid. Used for spell checking the various documentation files.
+</p></dd>
+</dl>
+
+</div>
+<div class="section" id="Portability_003a-POSIX-and-Non_002dPOSIX">
+<h3 class="section">3.5 Portability: POSIX and Non-POSIX</h3>
+
+<p>There are places in <code>gawk</code> where it needs to find out OS-specific
+information or do an OS-specific task.  These are abstracted into the following
+routines:
+</p>
+<div class="example">
+<pre class="example">os_arg_fixup(int *argcp, char ***argvp)
+os_devopen(const char *name, int flag)
+os_close_on_exec(int fd, const char *name, const char *what, const char *dir)
+os_isdir(int fd)
+os_isreadable(const awk_input_buf_t *iobuf, bool *isdir)
+os_is_setuid()
+os_setbinmode(int fd, int mode)
+os_restore_mode(int fd)
+os_isatty(int fd)
+os_maybe_set_errno(void)
+</pre></div>
+
+<p>There are three different implementations of these routines, one for
+OpenVMS, one for Windows with MinGW, and one for everything else (POSIX).
+</p>
+<p>In the top level directory, the <samp>gawkmisc.c</samp> file includes a subsidiary
+file for each environment, depending upon the system where <code>gawk</code> is
+being compiled.
+</p>
+<p>On POSIX systems, this is <samp>posix/gawkmisc.c</samp>.
+On OpenVMS, this is <samp>vms/gawkmisc.vms</samp>,
+and on Windows with MinGW, this is <samp>pc/gawkmisc.pc</samp>.
+Each of these files are C code that define the above routines.
+On some of the systems, these routines return default or error values, as
+appropriate.
+</p>
+<p>In this way, the mainline <code>gawk</code> code avoids lots of <code>#ifdef</code>
+statements, yet the &lsquo;<samp>os_</samp>&rsquo; prefix provides an indication that the operation
+being performed is OS-specific.
+</p>
+<p>If you look at the files, you will see that they are very similar to each
+other.
+</p>
+
+</div>
+<div class="section" id="GNULIB">
+<h3 class="section">3.6 GNULIB</h3>
+
+<p>In the support directory are files that <code>gawk</code> uses as essentially
+&ldquo;library&rdquo; or support routines. For example, the <code>regex</code> and <code>dfa</code> matchers. (Why
+<code>gawk</code> has two regular expression matchers is another story.)
+Almost all these files come from GNULIB.
+</p>
+<p>Unlike most other projects that take files from GNULIB, all I do is take the
+source files. I don&rsquo;t use the GNULIB infrastructure (<code>gnulibtoolize</code>, or
+whatever it&rsquo;s called) to bring in all their <code>m4</code> files. The reason is
+that they tend to pull in the transitive closure of everything any particular
+item depends upon.  Thus the supporting infrastructure ends up overwhelming the
+actual code in the project.  That&rsquo;s both silly and wasteful of CPU time, person
+time, and disk space.
+</p>
+<p>The script <samp>helpers/update-support.sh</samp> can be used to update the support
+directory&rsquo;s files, although it assumes that the local <code>git</code> clone of
+the GNULIB repository lives in a certain directory.
+</p>
+<p>I am the only one who runs it, although we can look into making it more
+general going forward.
+</p>
+<hr>
+</div>
+</div>
+<div class="unnumbered" id="Index">
+<div class="header">
+<p>
+Previous: <a href="#General-Maintainership" accesskey="p" rel="prev">General Maintainership</a>, Up: <a href="#Top" accesskey="u" rel="up">GNU Awk Maintainer Notes</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Index-1"></span><h2 class="unnumbered">Index</h2>
+
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a class="summary-letter" href="#Index_cp_letter-A"><b>A</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Index_cp_letter-B"><b>B</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Index_cp_letter-C"><b>C</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Index_cp_letter-F"><b>F</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Index_cp_letter-H"><b>H</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Index_cp_letter-K"><b>K</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Index_cp_letter-L"><b>L</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Index_cp_letter-R"><b>R</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Index_cp_letter-S"><b>S</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Index_cp_letter-T"><b>T</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Index_cp_letter-W"><b>W</b></a>
+ &nbsp; 
+</td></tr></table>
+<table class="index-cp" border="0">
+<tr><td></td><th align="left">Index Entry</th><td>&nbsp;</td><th align="left"> Section</th></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Index_cp_letter-A">A</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Adams_002c-Rick">Adams, Rick</a>:</td><td>&nbsp;</td><td valign="top"><a href="#GNU-Awk-Maintainership-Background-and-Context">GNU Awk Maintainership Background and Context</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Aho_002c-Alfred">Aho, Alfred</a>:</td><td>&nbsp;</td><td valign="top"><a href="#GNU-Awk-Maintainership-Background-and-Context">GNU Awk Maintainership Background and Context</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Aho_002c-Alfred-1">Aho, Alfred</a>:</td><td>&nbsp;</td><td valign="top"><a href="#General-Maintainership">General Maintainership</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Index_cp_letter-B">B</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Barlow-Close_002c-Diane">Barlow Close, Diane</a>:</td><td>&nbsp;</td><td valign="top"><a href="#GNU-Awk-Maintainership-Background-and-Context">GNU Awk Maintainership Background and Context</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Index_cp_letter-C">C</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Colombo_002c-Antonio">Colombo, Antonio</a>:</td><td>&nbsp;</td><td valign="top"><a href="#General-Maintainership">General Maintainership</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Index_cp_letter-F">F</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Fenlason_002c-Jay">Fenlason, Jay</a>:</td><td>&nbsp;</td><td valign="top"><a href="#GNU-Awk-Maintainership-Background-and-Context">GNU Awk Maintainership Background and Context</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Index_cp_letter-H">H</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Haque_002c-John">Haque, John</a>:</td><td>&nbsp;</td><td valign="top"><a href="#GNU-Awk-Maintainership-Background-and-Context">GNU Awk Maintainership Background and Context</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Haque_002c-John-1">Haque, John</a>:</td><td>&nbsp;</td><td valign="top"><a href="#GNU-Awk-Maintainership-Background-and-Context">GNU Awk Maintainership Background and Context</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Index_cp_letter-K">K</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Kernighan_002c-Brian">Kernighan, Brian</a>:</td><td>&nbsp;</td><td valign="top"><a href="#GNU-Awk-Maintainership-Background-and-Context">GNU Awk Maintainership Background and Context</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Kernighan_002c-Brian-1">Kernighan, Brian</a>:</td><td>&nbsp;</td><td valign="top"><a href="#General-Maintainership">General Maintainership</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Index_cp_letter-L">L</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Levine_002c-John">Levine, John</a>:</td><td>&nbsp;</td><td valign="top"><a href="#General-Maintainership">General Maintainership</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Index_cp_letter-R">R</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Robbins_002c-Arnold">Robbins, Arnold</a>:</td><td>&nbsp;</td><td valign="top"><a href="#GNU-Awk-Maintainership-Background-and-Context">GNU Awk Maintainership Background and Context</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Rubin_002c-Paul">Rubin, Paul</a>:</td><td>&nbsp;</td><td valign="top"><a href="#GNU-Awk-Maintainership-Background-and-Context">GNU Awk Maintainership Background and Context</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Index_cp_letter-S">S</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Stallman_002c-Richard">Stallman, Richard</a>:</td><td>&nbsp;</td><td valign="top"><a href="#GNU-Awk-Maintainership-Background-and-Context">GNU Awk Maintainership Background and Context</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Index_cp_letter-T">T</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Trueman_002c-David">Trueman, David</a>:</td><td>&nbsp;</td><td valign="top"><a href="#GNU-Awk-Maintainership-Background-and-Context">GNU Awk Maintainership Background and Context</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Trueman_002c-David-1">Trueman, David</a>:</td><td>&nbsp;</td><td valign="top"><a href="#GNU-Awk-Maintainership-Background-and-Context">GNU Awk Maintainership Background and Context</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Trueman_002c-David-2">Trueman, David</a>:</td><td>&nbsp;</td><td valign="top"><a href="#GNU-Awk-Maintainership-Background-and-Context">GNU Awk Maintainership Background and Context</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Trueman_002c-David-3">Trueman, David</a>:</td><td>&nbsp;</td><td valign="top"><a href="#GNU-Awk-Maintainership-Background-and-Context">GNU Awk Maintainership Background and Context</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Index_cp_letter-W">W</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Weinberger_002c-Peter">Weinberger, Peter</a>:</td><td>&nbsp;</td><td valign="top"><a href="#GNU-Awk-Maintainership-Background-and-Context">GNU Awk Maintainership Background and Context</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Weinberger_002c-Peter-1">Weinberger, Peter</a>:</td><td>&nbsp;</td><td valign="top"><a href="#General-Maintainership">General Maintainership</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Woods_002c-John">Woods, John</a>:</td><td>&nbsp;</td><td valign="top"><a href="#GNU-Awk-Maintainership-Background-and-Context">GNU Awk Maintainership Background and Context</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+</table>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a class="summary-letter" href="#Index_cp_letter-A"><b>A</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Index_cp_letter-B"><b>B</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Index_cp_letter-C"><b>C</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Index_cp_letter-F"><b>F</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Index_cp_letter-H"><b>H</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Index_cp_letter-K"><b>K</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Index_cp_letter-L"><b>L</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Index_cp_letter-R"><b>R</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Index_cp_letter-S"><b>S</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Index_cp_letter-T"><b>T</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Index_cp_letter-W"><b>W</b></a>
+ &nbsp; 
+</td></tr></table>
+
+</div>
+</div>
+<div class="footnote">
+<hr>
+<h4 class="footnotes-heading">Footnotes</h4>
+
+<h5><a id="FOOT1" href="#DOCF1">(1)</a></h5>
+<p>The Italian translation is maintained by Antonio Colombo
+&ldquo;azc100 at gmail dot com&rdquo;. He has commit access
+to the repository.</p>
+</div>
+
+
+
+</body>
+</html>

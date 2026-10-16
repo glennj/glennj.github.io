@@ -19,7 +19,7 @@ Notes about tools for
 
 [Other stuff](./stuff.md)
 
-[Bash docs](./bash)
+[GNU docs](./gnu)
 
 ---
 

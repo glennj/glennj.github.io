@@ -1,10 +1,5 @@
 # Bash
 
-The canonical bash sources are hosted at gnu.org
-However, this site has a tendancy to be unresponsive.
-
-I have build bash v5.3 and put the docs here:
-
 * [bash man page](./bash.html)
 * [bash reference manual](./bashref.html)
 
